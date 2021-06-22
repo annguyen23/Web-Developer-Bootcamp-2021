@@ -37,6 +37,7 @@
                 <input type="number" placeholder="enter a number" name="number">
             </label>
         </p>
+        <h2>Buttons!</h2>
         <p>
             <button type="button">Button</button>
             <button type="submit">Submit</button>
@@ -44,6 +45,7 @@
         </p>
     </form>
 
+    <!--button & input link to GG search-->
     <form action="https://www.google.com/search">
         <input type="text" name="query">
         <button>Search GG</button>
@@ -52,6 +54,46 @@
         <input type="text" name="search_query">
         <button>Search Youtube</button>
     </form>
+
+    <h2>More Inputs!</h2>
+    <form action="/birds">
+        <h3>check box</h3>
+        <input type="checkbox" name="agree_Tos" id="agree">
+        <label for="agree">I agree to everything</label>
+
+        <h3>radio buttons</h3>
+        <p>
+            <!--for 3 radio buttons to links, their names must be similar -> can only select 1 out of 3-->
+            <!--value is the value that will be sent to Action. Otherwise, it will be size=on-->
+            <label for="xs">XS</label>
+            <input type="radio" name="size" id="xs" value="sizeXS">
+            <label for="s">S</label>
+            <input type="radio" name="size" id="s" value="sizeS">
+            <label for="m">M</label>
+            <input type="radio" name="size" id="m" value="sizeM">
+        </p>
+
+        <h3>Options</h3>
+        <p>
+            <label for="meal">Please select 1 meal</label>
+            <select name="meal" id="meal">
+                <option value="food">Food</option>
+                <option value="fish">Fish</option>
+                <option value="veg">Veg</option>
+                <option value="beef">Beef</option>
+            </select>
+        </p>
+
+        <h3>Range</h3>
+        <p>
+            <label for="cheese">amount of cheese</label>
+            <!--value is the initial value before changing-->
+            <input type="range" id="cheese" min="0" max="100" step="20" value="40" name="cheeseLevel">
+        </p>
+        <button>submit</button>
+    </form>
+
+
 
 </body>
 
