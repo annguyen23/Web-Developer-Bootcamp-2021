@@ -10,17 +10,49 @@
 
 <body>
     <h1>Forms Demo</h1>
-    <form action="/tacos">
-        <!--placeholder does not work for all types of input-->
-        <input type="button" placeholder="button">
-        <input type="checkbox" placeholder="checkbox">
-        <input type="text" placeholder="username">
-        <input type="email" placeholder="email">
-        <input type="password" placeholder="password">
-        <input type="color" placeholder="color">
-        <input type="number" placeholder="enter a number">
-    </form>
     <!--Action: where the data should be sent when the data is submitted-->
+    <form action="/tacos">
+        <p>
+            <!--for (label) is linked with id (input), id should be unique-->
+            <label for="username">Enter a Username: </label>
+            <input id="username" type="text" placeholder="username" name="username">
+            <!--when the data is submitted, it will be saved under username-->
+            <!--placeholder does not work for all types of input-->
+        </p>
+        <p>
+            <label for="email">Enter an email: </label>
+            <input id="email" type="email" placeholder="email" name="email">
+        </p>
+        <p>
+            <label for="pass">Enter a password: </label>
+            <input id="pass" type="password" placeholder="password" name="password">
+        </p>
+        <p>
+            <label for="color"> Enter a color: </label>
+            <input id="color" type="color">
+        </p>
+        <p>
+            <!--other way to work with label and input-->
+            <label> Enter a number:
+                <input type="number" placeholder="enter a number" name="number">
+            </label>
+        </p>
+        <p>
+            <button type="button">Button</button>
+            <button type="submit">Submit</button>
+            <input type="submit" value="click me!">
+        </p>
+    </form>
+
+    <form action="https://www.google.com/search">
+        <input type="text" name="query">
+        <button>Search GG</button>
+    </form>
+    <form action="https://www.youtube.com/results">
+        <input type="text" name="search_query">
+        <button>Search Youtube</button>
+    </form>
+
 </body>
 
 </html>
