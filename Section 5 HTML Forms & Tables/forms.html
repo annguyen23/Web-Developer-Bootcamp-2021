@@ -90,9 +90,29 @@
             <!--value is the initial value before changing-->
             <input type="range" id="cheese" min="0" max="100" step="20" value="40" name="cheeseLevel">
         </p>
+        <p>
+            <label for="request">Any Special Requests?</label> <br>
+            <textarea name="request" id="request" cols="100" rows="5"></textarea>
+        </p>
         <button>submit</button>
     </form>
 
+    <h2>Validation Demos</h2>
+    <form action="/dummy">
+        <label for="first">Enter your first name:</label>
+        <input type="text" name="FName" id="first">
+        <p>
+            <label for="username">Enter your username:</label>
+            <input type="text" name="username" id="username" minlength="5" maxlength="20" required>
+        </p>
+        <p>
+            <input type="email" required>
+        </p>
+        <p>
+            <input type="url" required>
+        </p>
+        <button>Submit</button>
+    </form>
 
 
 </body>
