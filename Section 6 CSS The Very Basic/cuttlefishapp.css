@@ -18,3 +18,15 @@ p {
     /* Verdana is the first option, if it is not available, use Futura */
     font-family: Verdana, Futura; 
 }
+
+.about .heading {
+    color: orange;
+  }
+   
+  .about h2.heading {
+    color: pink;
+  }
+   
+  section.about .heading {
+    color: yellow;
+  }

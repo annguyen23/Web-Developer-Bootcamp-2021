@@ -79,3 +79,18 @@ h2:nth-of-type(3){
 h2:nth-of-type(2n){
     background-color: #dfe8dc;
 }
+
+/*first letter of <h2>*/
+h2::first-letter{
+    color:#457b9d
+}
+
+/*first line of <p>*/
+p::first-line{
+    color: plum;
+}
+
+/*select or highlight of <p>*/
+p::selection {
+    color:orange;
+}
