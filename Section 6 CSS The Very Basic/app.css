@@ -17,6 +17,7 @@ body{
     background-color: #f1faee; /* #c5e = #cc55ee */
 }
 
+/* id */
 #signup {
     background-color: #1d1d1d;
     color: #f1faee
@@ -26,22 +27,55 @@ span {
     color: #457b9d;
 }
 
+/* class */
 .tag{
     background-color: #e63946;
     color: #f1faee;
     font-size: 16px;
 }
 
-/* Descendant Selector: only for a in p*/
+/* Descendant Selector: only for <a> in <p>*/
 p a{
     color: #457b9d;
 }
 
-/* Adjacent Selector: button right after input*/
+/* Adjacent Selector: <button> right after <input>*/
 input + button {
     background-color: pink;
 }
-/* Direct Selector: only the first children a of body*/
+/* Direct Selector: only the first children <a> of <body>*/
 body > a {
     color: red;
+}
+
+input [type="password"]{
+    color: green;
+}
+
+/* <a> elements with an href containing "example" */
+a[href*="google"]{
+    color: magenta;
+}
+
+button:hover{
+    background-color: #e63946;
+    color: #f1faee;
+}
+
+a:hover{
+    color: black;
+}
+
+button:active {
+    background-color: #5fcffc;
+}
+
+/* 3rd h2*/
+h2:nth-of-type(3){
+    background-color: #75b65f;
+}
+
+/* every 2 h2*/
+h2:nth-of-type(2n){
+    background-color: #dfe8dc;
 }
