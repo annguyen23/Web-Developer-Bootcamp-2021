@@ -1,6 +1,8 @@
 h1 {
+    text-transform: uppercase;
     text-align: center;
     font-weight: 600;
+    /* multiple options follow by a space*/
     text-decoration: #cfe overline underline;
     letter-spacing: 15px;
     font-size: 50px;
@@ -12,4 +14,7 @@ a {
 
 p {
     line-height: 2;
+
+    /* Verdana is the first option, if it is not available, use Futura */
+    font-family: Verdana, Futura; 
 }

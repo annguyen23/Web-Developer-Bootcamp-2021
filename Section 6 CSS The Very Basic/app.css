@@ -1,4 +1,4 @@
-h2 {
+h1, h2 {
     color: #5fcffc;
     background-color: rgb(0, 200, 0);
     /* background: orange; */ /*-background does a lot more than background-color*/
@@ -6,7 +6,7 @@ h2 {
 
 button {
     color: teal;
-    background-color: cyan;
+    background-color: #a8dadc;
 }
 
 p {
@@ -14,5 +14,10 @@ p {
 }
 
 body{
-    background-color: #c5e; /* #c5e = #cc55ee */
+    background-color: #f1faee; /* #c5e = #cc55ee */
+}
+
+#signup {
+    background-color: #1d1d1d;
+    color: #f1faee
 }
