@@ -1,0 +1,48 @@
+
+#rgba{
+    width: 50%;
+    height: 50%;
+    background-color: rgba(255, 251, 0, 0.5);
+}
+
+/*  Alpha: only itself
+Opacity: everything in it including text color
+*/
+#opacity{
+    width: 50%;
+    height: 50%;
+    background-color: yellow;
+    opacity: 0.5;
+}
+#middle {
+    background-color: aquamarine;
+}
+#static #middle {
+    position: static;
+    top: 100px;
+}
+
+div {
+    width: 100pt;
+    height: 100px;
+    background-color: palevioletred;
+    display: inline-block;
+    border: 1px black solid;
+}
+
+#relative #middle{
+    position: relative;
+    top: 100px;
+}
+
+#absolute #middle{
+    position: absolute;
+    top: 50px;
+    left: 50px;
+}
+
+/* Always stay on a specific position even though you roll down or up*/
+#fixed #middle{
+    position: fixed;
+    top: 0;
+}

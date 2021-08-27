@@ -1,0 +1,33 @@
+section {
+    width: 80%;
+    height: 700px;
+    background-color: purple;
+    margin: 0 auto;
+
+    /* make the image with the background*/
+    /* background-size: cover; 
+    background-position: top;/* use the top of the image */
+    /* background-image: url("https://thumbor.forbes.com/thumbor/fit-in/1200x0/filters%3Aformat%28jpg%29/https%3A%2F%2Fspecials-images.forbesimg.com%2Fimageserve%2F6082931ef598a85b055afe77%2F0x0.jpg%3FcropX1%3D0%26cropX2%3D3475%26cropY1%3D182%26cropY2%3D2137"); */ 
+    background: center/cover no-repeat url("https://thumbor.forbes.com/thumbor/fit-in/1200x0/filters%3Aformat%28jpg%29/https%3A%2F%2Fspecials-images.forbesimg.com%2Fimageserve%2F6082931ef598a85b055afe77%2F0x0.jpg%3FcropX1%3D0%26cropX2%3D3475%26cropY1%3D182%26cropY2%3D2137"); 
+
+}
+
+h1{
+    font-size: 100px;
+    font-weight: 100;
+    color: white;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+main {
+    width: 80%;
+    margin: 0 aotu;
+}
+h2 + h3{
+    margin-top: 10px;
+}
+
+h2, h3{
+    font-weight: 100;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
