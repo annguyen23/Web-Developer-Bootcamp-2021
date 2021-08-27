@@ -25,7 +25,11 @@ ul {
     justify-content: space-evenly;
 }
 
-
+@media (min-width: 800px) {
+    h1 {
+        color: purple;
+    }
+}
 /* @media (min-width: 600px) and (max-width: 800px){
     h1 {
         color: purple;
