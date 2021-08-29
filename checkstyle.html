@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,maximum-scale=2">
+    <link rel="stylesheet" type="text/css" media="screen"
+        href="/checkstyle-webpage/assets/css/style.css?v=d5695a703c87b70ff6227e9eb48435a91f6611cf">
+    <link rel="stylesheet" href="app.css">
+    <!-- Begin Jekyll SEO tag v2.7.1 -->
+    <title>checkstyle-webpage | Checkstyle warning annotation explanation website code</title>
+    <meta name="generator" content="Jekyll v3.9.0" />
+    <meta property="og:title" content="checkstyle-webpage" />
+    <meta property="og:locale" content="en_US" />
+    <meta name="description" content="Checkstyle warning annotation explanation website code" />
+    <meta property="og:description" content="Checkstyle warning annotation explanation website code" />
+    <link rel="canonical" href="https://pisana.github.io/checkstyle-webpage/" />
+    <meta property="og:url" content="https://pisana.github.io/checkstyle-webpage/" />
+    <meta property="og:site_name" content="checkstyle-webpage" />
+    <meta name="twitter:card" content="summary" />
+    <meta property="twitter:title" content="checkstyle-webpage" />
+    <script type="application/ld+json">
+{"description":"Checkstyle warning annotation explanation website code","url":"https://pisana.github.io/checkstyle-webpage/","@type":"WebSite","headline":"checkstyle-webpage","name":"checkstyle-webpage","@context":"https://schema.org"}</script>
+    <!-- End Jekyll SEO tag -->
+
+    <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
+
+    <!-- Setup Google Analytics -->
+
+
+
+    <!-- You can set your favicon here -->
+    <!-- link rel="shortcut icon" type="image/x-icon" href="/checkstyle-webpage/favicon.ico" -->
+
+    <!-- end custom head snippets -->
+
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+
+            <a id="forkme_banner" href="https://github.com/PisanA/checkstyle-webpage">View on GitHub</a>
+
+
+            <h1 id="project_title">checkstyle-webpage</h1>
+            <h2 id="project_tagline">Checkstyle warning annotation explanation website code </h2>
+
+
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+        <section id="main_content" class="inner">
+
+            <!---
+## Welcome to GitHub Pages
+
+You can use the [editor on GitHub](https://github.com/PisanA/checkstyle-webpage/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+
+Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+--->
+
+            <h1 id="checkstyle">Checkstyle</h1>
+
+            <p><img src="https://user-images.githubusercontent.com/54456351/119812559-1ec06400-be9d-11eb-907d-e1b71a97a447.png"
+                    alt="image" /> <br />
+                <img src="https://user-images.githubusercontent.com/54456351/119814435-3f89b900-be9f-11eb-8578-2272566be21c.png"
+                    alt="image" /> <br />
+            </p>
+
+            <p>Checkstyle is a tool for checking Java source code for adherence to the Google Java Style Guide.<br />
+                Click “checkstyle” to view the report. The report should look like this:
+                <img src="https://user-images.githubusercontent.com/54456351/120709943-5ec1b100-c472-11eb-93a1-1aafa7de830a.png"
+                    alt="image" /> <br />
+                <br /> <br /> <br />
+                You can access each code line violating the coding standard through “Findings(6)”
+                <img src="https://user-images.githubusercontent.com/54456351/126027336-b869520f-6061-48b3-937d-2ceb9c95baf9.png"
+                    alt="image" />
+                <br />
+            </p>
+
+            <p>The following is some comments you might find in the report:</p>
+
+            <h2 id="missing-a-javadoc-comment">Missing a Javadoc comment.</h2>
+            <p>There is a special format for Javadoc if you want to put comments above a method. <br />
+                <img src="https://user-images.githubusercontent.com/54456351/128497623-32d5bd4a-681d-4c2d-b339-9187facc98ac.png"
+                    alt="image" />
+                <br /><br />
+            </p>
+
+            <h2 id="javadoc-comment-is-placed-in-the-wrong-location">Javadoc comment is placed in the wrong location.
+            </h2>
+            <p>Class level Javadoc should be after the <code class="language-plaintext highlighter-rouge">import</code>
+                section and before <code class="language-plaintext highlighter-rouge">class</code>. <br />
+                Example of bad Javadoc:<br />
+                <img src="https://user-images.githubusercontent.com/54456351/128498412-12dc1cf7-b9d8-4fa3-ae53-708abd7adea4.png"
+                    alt="image" /> <br /><br />
+                Example of good Javadoc:<br />
+                <img src="https://user-images.githubusercontent.com/54456351/128498495-5c85c6ae-bb48-4272-b2c0-63eb3e5ae096.png"
+                    alt="image" />
+                <br /><br />
+            </p>
+
+            <h2 id="method-def-modifier-has-incorrect-indentation-level-4-expected-level-should-be-2">‘method def
+                modifier’ has incorrect indentation level 4, expected level should be 2.</h2>
+            <p>Checkstyle uses an indentation of 2 spaces, but most IDEs use 4 spaced indentation. Therefore, if you
+                want to use 4 spaced indentation, you can ignore this comment.
+                <br /><br />
+            </p>
+
+            <h2 id="line-contains-a-tab-character">Line contains a tab character.</h2>
+            <p>This mean your code line contains a tab character. <br />
+                Using the tab key inserts an actual invisible tab character into your text, which can mess up the
+                formatting later when your publisher tries to reformat your document for publication. <br />
+                Different IDEs have different size of tab. Tab character is commonly 2 or 4 spaces in most IDEs. The
+                differences can cause inconsistent code style while copying and pasting code. Therefore, programmers
+                should use spaces instead of tab charater.
+                <br /><br />
+            </p>
+
+            <h2 id="line-is-longer-than-100-characters-found-109">Line is longer than 100 characters (found 109).</h2>
+            <p>A normal computer screen cannot show more than 100 characters horizontally, preferably under 80
+                character. The long line should be broken into shorter lines to ensure readability. <br />
+                <img src="https://user-images.githubusercontent.com/54456351/126028286-b6396342-31e5-40b2-9de9-567957605454.png"
+                    alt="image" />
+                <br /><br />
+            </p>
+
+            <h2 id="local-variable-name-codingstyle-must-match-pattern-a-z">Local variable name ‘Codingstyle’ must match
+                pattern ‘^<a href="[a-z0-9][a-zA-Z0-9]*">a-z</a>?$’</h2>
+            <p>The first letter of variable name should be in lowercase, and each new word start with a uppercase
+                letter. <br />
+                <img src="https://user-images.githubusercontent.com/54456351/126029123-0fe28fec-7d9e-4be6-b330-108c96081393.png"
+                    alt="image" />
+                <br /><br />
+            </p>
+
+            <h2 id="abbreviation-in-name-sml-must-contain-no-more-than-2-consecutive-capital-letters">Abbreviation in
+                name ‘SML’ must contain no more than ‘2’ consecutive capital letters.</h2>
+            <p>The variable name rule is the first letter should be in lowercase, and each new word start with a
+                uppercase letter. Therefore, each uppercase letter will be counted as a word. 3 consecutive capital
+                letters mean 3 words next to each other. The name is too short and and undescriptive. <br />
+                <img src="https://user-images.githubusercontent.com/54456351/126029355-ab461cb7-5c27-4c37-985f-da31d3d224bf.png"
+                    alt="image" />
+                <br /><br />
+            </p>
+
+            <h2 id="method-name-tostring-must-match-pattern-a-za-z0-9a-za-z0-9_">Method name ‘ToString’ must match
+                pattern ‘^[a-z][a-z0-9][a-zA-Z0-9_]*$’.</h2>
+            <p>The first letter of method name should be in lowercase, and each new word start with a uppercase letter.
+                <br />
+                <img src="https://user-images.githubusercontent.com/54456351/126029492-b885881d-6341-46e2-981b-1fa5fb0a7c81.png"
+                    alt="image" />
+                <br /><br />
+            </p>
+
+            <h2 id="only-one-statement-per-line-allowed">Only one statement per line allowed.</h2>
+            <p>Code should only have 1 statement per line for readability. <br />
+                <img src="https://user-images.githubusercontent.com/54456351/126028246-9a27aabf-7a2f-48ea-80c1-23a2cde3e735.png"
+                    alt="image" />
+                <br /><br />
+            </p>
+
+            <h2 id="if-construct-must-use-s">‘if’ construct must use ‘{}’s.</h2>
+            <p>Even when you only have 1 statement in your constructor, you should uses ‘{}’. For example: <br />
+                <img src="https://user-images.githubusercontent.com/54456351/126028318-99d0c385-7a7c-410f-944c-beec18a816b2.png"
+                    alt="image" />
+                <br /><br />
+            </p>
+
+            <h2 id="-at-column-5-should-be-on-the-previous-line">’{‘ at column 5 should be on the previous line.</h2>
+            <p>CheckStyle follows K&amp;R style that <code class="language-plaintext highlighter-rouge">{</code> is in
+                the same line with the control statement (if, while, for…). If you want to use Allman or other styles,
+                you can ignore this warning.<br />
+                <img src="https://user-images.githubusercontent.com/54456351/126028275-0b9359a6-0368-4d82-a836-04fcf6ec563f.png"
+                    alt="image" />
+                <br /><br />
+            </p>
+
+            <h2
+                id="whitespacearound--is-not-preceded-with-whitespace-and-whitespacearound--is-not-followed-by-whitespace-empty-blocks-may-only-be-represented-as--when-not-part-of-a-multi-block-statement-413">
+                WhitespaceAround: ‘=’ is not preceded with whitespace <strong>and</strong> WhitespaceAround: ‘=’ is not
+                followed by whitespace. Empty blocks may only be represented as {} when not part of a multi-block
+                statement (4.1.3).</h2>
+            <p>There should be a space before and after all operators (<code
+                    class="language-plaintext highlighter-rouge">+</code>, <code
+                    class="language-plaintext highlighter-rouge">-</code>, <code
+                    class="language-plaintext highlighter-rouge">*</code>, <code
+                    class="language-plaintext highlighter-rouge">/</code>, <code
+                    class="language-plaintext highlighter-rouge">=</code>, <code
+                    class="language-plaintext highlighter-rouge">&lt;</code>, <code
+                    class="language-plaintext highlighter-rouge">&gt;</code>, <code
+                    class="language-plaintext highlighter-rouge">&amp;&amp;</code>, <code
+                    class="language-plaintext highlighter-rouge">||</code>, <code
+                    class="language-plaintext highlighter-rouge">!=</code>, <code
+                    class="language-plaintext highlighter-rouge">&gt;=</code>, <code
+                    class="language-plaintext highlighter-rouge">&lt;=</code>, <code
+                    class="language-plaintext highlighter-rouge">==</code>). <br />
+                <code class="language-plaintext highlighter-rouge">;</code> should be followed by a space if there is
+                anything after it <br />
+                <img src="https://user-images.githubusercontent.com/54456351/126028552-f7155f96-9494-438a-95f2-64a76b2fe93c.png"
+                    alt="image" />
+                <br /><br />
+            </p>
+
+            <h2 id="-is-preceded-with-whitespace">’(‘ is preceded with whitespace.</h2>
+            <p>There should be no spaces before the parentheses in a method call or a constructor creation. <br />
+                <img src="https://user-images.githubusercontent.com/54456351/126028488-7bf86f74-ffb4-419f-b8dd-7ff7107c6004.png"
+                    alt="image" />
+                <br /><br />
+            </p>
+
+            <h2 id="-is-followed-by-whitespace">’(‘ is followed by whitespace.</h2>
+            <p>There should be no spaces after <code class="language-plaintext highlighter-rouge">(</code> and before
+                <code class="language-plaintext highlighter-rouge">)</code>. <br />
+                <img src="https://user-images.githubusercontent.com/54456351/126028564-1a793175-a37e-4192-84c2-7d52a942b373.png"
+                    alt="image" />
+                <br /><br />
+            </p>
+
+            <h2
+                id="-at-column-9-should-be-on-the-same-line-as-the-next-part-of-a-multi-block-statement-one-that-directly-contains-multiple-blocks-ifelse-ifelse-dowhile-or-trycatchfinally">
+                ’}’ at column 9 should be on the same line as the next part of a multi-block statement (one that
+                directly contains multiple blocks: if/else-if/else, do/while or try/catch/finally).</h2>
+            <p>CheckStyle follows K&amp;R style that if you have multiple if-else statements, the next one should be on
+                the same line with the previous ending bracket ‘}’
+                If you want to use Horstmann or other styles, you can ignore this warning.<br />
+                <img src="https://user-images.githubusercontent.com/54456351/126028730-2bc9e484-6702-4ac9-97dd-5bc7a20dc562.png"
+                    alt="image" />
+                <br /><br />
+            </p>
+
+            <h2 id="using-the--form-of-import-should-be-avoided---javautil--">Using the ‘.*’ form of import should be
+                avoided - java.util. * .</h2>
+            <p>The library is divided into packages and classes. Meaning you can either import a single class (along
+                with its methods and attributes), or a whole package that contain all the classes that belong to the
+                specified package. <br />
+                You should import specific classes that are used in the program instead of import the whole package
+                <br />
+                <img src="https://user-images.githubusercontent.com/54456351/126028774-d9834472-38af-4ef2-b176-c22a8f95b8dc.png"
+                    alt="image" />
+                <br /><br />
+            </p>
+
+            <h2 id="wrong-lexicographical-order-for-javautilarray-import-should-be-before-javautilscanner">Wrong
+                lexicographical order for ‘java.util.Array’ import. Should be before ‘java.util.Scanner’.</h2>
+            <p>The import should be in lexicographical order (alphabetical order A-Z). For example, <code
+                    class="language-plaintext highlighter-rouge">io</code> shoud be before <code
+                    class="language-plaintext highlighter-rouge">util</code> and <code
+                    class="language-plaintext highlighter-rouge">Array</code> should be before <code
+                    class="language-plaintext highlighter-rouge">Scanner</code>. The following is an example of import
+                section in correct lexicographical order. <br />
+                <img src="https://user-images.githubusercontent.com/54456351/126028878-d46bcefa-38d7-48b9-a83a-1f69e6e25dd2.png"
+                    alt="image" />
+                <br /><br />
+            </p>
+
+            <h2 id="extra-separation-in-import-group-before-javautilarray">Extra separation in import group before
+                ‘java.util.Array’</h2>
+            <p>There should be no separation (new lines) within the import section.
+                <img src="https://user-images.githubusercontent.com/54456351/126028962-7b03a77a-fad8-4f13-a9b4-39974b8b7806.png"
+                    alt="image" />
+                <br /><br />
+            </p>
+
+            <h2 id="array-brackets-at-illegal-position">Array brackets at illegal position.</h2>
+            <p>Brackets should be put right after the declaration type, not the name. <br />
+                <img src="https://user-images.githubusercontent.com/54456351/128547554-4419c779-9116-49c9-899b-825b06e47dbb.png"
+                    alt="image" />
+                <br /><br />
+            </p>
+
+            <h4 id="for-more-information-view-google-java-style-guide">For more information, view <a
+                    href="https://checkstyle.sourceforge.io/styleguides/google-java-style-20180523/javaguide.html">Google
+                    Java Style Guide</a></h4>
+
+            <!-- link to checkstyle word files: https://docs.google.com/document/d/1L7H60XW0bg_6tAjo4Lsm5I8Qmf-xCnGnXz3iHFH2jV0/edit-->
+
+        </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+        <footer class="inner">
+
+            <p class="copyright">checkstyle-webpage maintained by <a href="https://github.com/PisanA">PisanA</a></p>
+
+            <p>Published with <a href="https://pages.github.com">GitHub Pages</a></p>
+        </footer>
+    </div>
+</body>
+
+</html>
