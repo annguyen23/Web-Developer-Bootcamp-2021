@@ -16,18 +16,28 @@
 //     console.log("Falsy");
 // }
 
-let maximum = parseInt(prompt("Enter a max num"));
-while (!maximum) {
-    maximum = parseInt(prompt("Enter a max num"));
-}
-let target = Math.floor(Math.random() * maximum) + 1;
-let guess = parseInt(prompt("Enter a guess"));
-while (guess !== target) {
-    if (guess > target) {
-        guess = parseInt(prompt("too high"));
-    } else {
-        guess = parseInt(prompt("too low"));
-    }
-}
+// let maximum = parseInt(prompt("Enter a max num"));
+// while (!maximum) {
+//     maximum = parseInt(prompt("Enter a max num"));
+// }
+// let target = Math.floor(Math.random() * maximum) + 1;
+// let guess = parseInt(prompt("Enter a guess"));
+// while (parseInt(guess) !== target) {
+//     if (guess === 'q') break;
+//     if (guess > target) {
+//         guess = prompt("too high");
+//     } else {
+//         guess = prompt("too low");
+//     }
+// }
 
-console.log(target);
+// console.log(target);
+
+const testScores = {
+    kim: 10,
+    han: 54,
+    hen: 5
+};
+for (let score in testScores) {
+    console.log(`${score}: ${testScores[score]}`);
+}
