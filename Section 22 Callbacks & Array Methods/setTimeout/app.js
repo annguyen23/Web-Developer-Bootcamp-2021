@@ -5,7 +5,7 @@ setTimeout(() => {
 
 console.log("GOODBYE!!") //run third, but print before "...are you still there?"
 
-// keep running every 2 second
+// keep running every 2 seconds
 const id = setInterval(() => {
     console.log(Math.random())
 }, 2000);

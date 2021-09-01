@@ -38,7 +38,7 @@ const user2 = {
 const { email, firstName, lastName, city, bio } = user;
 
 // const birthYear = user.born;
-// const deathYear = user.died;
+// const deathYear = user.died; if user doesn't have died, then it is N/A
 // const { born: birthYear, died: deathYear = 'N/A' } = user;
 
 // const { city, state, died = 'N/A' } = user2;
