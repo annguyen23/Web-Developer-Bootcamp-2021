@@ -37,6 +37,8 @@ const user2 = {
 // const email = user.email;
 const { email, firstName, lastName, city, bio } = user;
 
+// const birthYear = user.born;
+// const deathYear = user.died;
 // const { born: birthYear, died: deathYear = 'N/A' } = user;
 
 // const { city, state, died = 'N/A' } = user2;
