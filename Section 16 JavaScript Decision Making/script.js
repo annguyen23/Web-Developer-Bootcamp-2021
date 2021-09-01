@@ -43,25 +43,30 @@
 // }
 
 
-let input = prompt("What would you like to do?");
-const list = [];
-while (input !== 'quit') {
-    if (input === 'new') {
-        input = prompt("new Todo: ");
-        list.push(input);
-    } else if (input === 'list') {
-        console.log("***************");
-        for (let i = 0; i < list.length; i++) {
-            console.log(`${i}: ${list[i]}`);
-        }
-        console.log("***************");
-    } else if (input === 'delete') {
-        input = parseInt(prompt("What Todo do you want to delete? Enter the index "));
-        if (Number.isNaN(input)) {
-            continue;
-        }
-        console.log(`Ok, deleted ${list.splice(input, 1)}`);
-    }
-    input = prompt("What would you like to do?");
+// let input = prompt("What would you like to do?");
+// const list = [];
+// while (input !== 'quit') {
+//     if (input === 'new') {
+//         input = prompt("new Todo: ");
+//         list.push(input);
+//     } else if (input === 'list') {
+//         console.log("***************");
+//         for (let i = 0; i < list.length; i++) {
+//             console.log(`${i}: ${list[i]}`);
+//         }
+//         console.log("***************");
+//     } else if (input === 'delete') {
+//         input = parseInt(prompt("What Todo do you want to delete? Enter the index "));
+//         if (Number.isNaN(input)) {
+//             continue;
+//         }
+//         console.log(`Ok, deleted ${list.splice(input, 1)}`);
+//     }
+//     input = prompt("What would you like to do?");
+// }
+// console.log("Quit Todo list");
+
+function sing(note) {
+    console.log(note);
 }
-console.log("Quit Todo list");
+sing("Do");
