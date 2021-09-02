@@ -16,6 +16,7 @@ for (let h1 of h1s) {
     h1.addEventListener('click', colorize)
 }
 
+// generic function refers to whatever the event occurs on
 function colorize() {
     this.style.backgroundColor = makeRandColor();
     this.style.color = makeRandColor();

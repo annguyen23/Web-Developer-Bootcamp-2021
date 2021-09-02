@@ -11,6 +11,7 @@ document.querySelector('button').addEventListener('click', function (evt) {
 //     console.log("KEYUP")
 // })
 
+// watch for any key in the window in general, not just the text box
 window.addEventListener('keydown', function (e) {
     switch (e.code) {
         case 'ArrowUp':
