@@ -1,5 +1,6 @@
 const btn = document.querySelector('#v2');
 
+//if clicked button, print to console
 btn.onclick = function () {
     console.log("YOU CLICKED ME!")
     console.log("I HOPE IT WORKED!!")
@@ -10,6 +11,7 @@ function scream() {
     console.log("STOP TOUCHING ME!")
 }
 
+//if hover (mouse enters), print scream()
 btn.onmouseenter = scream;
 
 
@@ -32,8 +34,11 @@ function shout() {
 
 const tasButton = document.querySelector('#tas');
 
+// the 2nd one will run, but not the first
 // tasButton.onclick = twist;
 // tasButton.onclick = shout;
 
-tasButton.addEventListener('click', twist)
+
+// { once: true } makes the event runs only once
+tasButton.addEventListener('click', twist, { once: true })
 tasButton.addEventListener('click', shout)

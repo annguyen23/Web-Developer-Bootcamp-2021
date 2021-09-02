@@ -11,6 +11,8 @@ const makeRandColor = () => {
     const r = Math.floor(Math.random() * 255);
     const g = Math.floor(Math.random() * 255);
     const b = Math.floor(Math.random() * 255);
+    const sum = r + g + b;
+    h1.style.color = `rgb(${255 - r}, ${255 - g}, ${255 - b})`;
     return `rgb(${r}, ${g}, ${b})`;
 }
 
