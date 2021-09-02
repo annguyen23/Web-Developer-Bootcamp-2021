@@ -2,7 +2,7 @@
 
 const container = document.querySelector('#container');
 const baseURL = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/'
-
+//link contains 151 pokemon, just need to add #.png
 
 for (let i = 1; i <= 151; i++) {
     const pokemon = document.createElement('div');
