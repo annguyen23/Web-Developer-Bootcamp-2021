@@ -19,7 +19,10 @@ const addTweet = (username, tweet) => {
     tweetsContainer.append(newTweet);
 }
 
+// listen to the ul, but take action on the li
 tweetsContainer.addEventListener('click', function (e) {
+    // if clicked on the li, remove it
     e.target.nodeName === 'LI' && e.target.remove();
+    // to find target and nodeName, console.log(e) and console.dir(e.target)
 })
 
