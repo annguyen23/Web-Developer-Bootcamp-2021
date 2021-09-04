@@ -57,7 +57,7 @@ const delayedColorChange = (color, delay) => {
 //     .then(() => delayedColorChange('indigo', 1000))
 //     .then(() => delayedColorChange('violet', 1000))
 
-
+// use await instead of .then, await must go with async
 async function rainbow() {
     await delayedColorChange('red', 1000)
     await delayedColorChange('orange', 1000)

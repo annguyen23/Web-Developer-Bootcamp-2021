@@ -83,18 +83,21 @@ fakeRequestPromise('yelp.com/api/coffee/page1')
     .then((data) => {
         console.log("IT WORKED!!!!!! (page1)")
         console.log(data)
+        //after the 1st request, make a 2nd request
         return fakeRequestPromise('yelp.com/api/coffee/page2')
     })
     .then((data) => {
         console.log("IT WORKED!!!!!! (page2)")
         console.log(data)
+        //after the 2nd request, make a 3rd request
         return fakeRequestPromise('yelp.com/api/coffee/page3')
     })
     .then((data) => {
         console.log("IT WORKED!!!!!! (page3)")
         console.log(data)
+        //no return since no further request
     })
-    .catch((err) => { // if any fails, it catches here and stop
+    .catch((err) => { // if any fails reject() , it catches here and stop
         console.log("OH NO, A REQUEST FAILED!!!")
         console.log(err)
     })
