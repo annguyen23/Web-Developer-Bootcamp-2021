@@ -10,7 +10,7 @@ form.addEventListener('submit', async function (e) {
 
 const makeImages = (shows) => {
     for (let result of shows) {
-        if (result.show.image) {
+        if (result.show.image) { // to skip the image = null
             const img = document.createElement('IMG');
             img.src = result.show.image.medium;
             document.body.append(img)
