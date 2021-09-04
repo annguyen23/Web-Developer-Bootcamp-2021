@@ -94,7 +94,7 @@ fakeRequestPromise('yelp.com/api/coffee/page1')
         console.log("IT WORKED!!!!!! (page3)")
         console.log(data)
     })
-    .catch((err) => {
+    .catch((err) => { // if any fails, it catches here and stop
         console.log("OH NO, A REQUEST FAILED!!!")
         console.log(err)
     })
