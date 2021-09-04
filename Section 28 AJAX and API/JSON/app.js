@@ -5,3 +5,7 @@ const data = `{"ticker":{"base":"BTC","target":"USD","price":"11288.49813464","v
 const parsedData = JSON.parse(data);
 
 
+//Turn back to STRING OF JSON
+const data2 = JSON.stringify(parsedData);
+
+
