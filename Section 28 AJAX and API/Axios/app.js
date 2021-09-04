@@ -40,8 +40,8 @@ const addNewJoke = async () => {
 
 const getDadJoke = async () => {
     try {
-        const config = { headers: { Accept: 'application/json' } }
-        const res = await axios.get('https://icanhazdadjoke.com/', config)
+        const config = { headers: { Accept: 'application/json' } } // ask for json specifically 
+        const res = await axios.get('https://icanhazdadjoke.com/', config) // html by default
         return res.data.joke;
     } catch (e) {
         return "NO JOKES AVAILABLE! SORRY :("
