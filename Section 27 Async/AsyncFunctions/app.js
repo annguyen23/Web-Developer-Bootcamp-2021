@@ -81,10 +81,10 @@ printRainbow();
 
 const fakeRequest = (url) => {
     return new Promise((resolve, reject) => {
-        const delay = Math.floor(Math.random() * (4500)) + 500;
+        const delay = Math.floor(Math.random() * (4000));
         setTimeout(() => {
             if (delay > 2000) {
-                reject('Connection Timeout :(')
+                reject('Connection Timeout :( ' + delay)
             } else {
                 resolve(`Here is your fake data from ${url}`)
             }
