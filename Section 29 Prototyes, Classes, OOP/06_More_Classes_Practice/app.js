@@ -23,7 +23,7 @@ class Color {
 		);
 	}
 	hsl() {
-		const { h, s, l } = this;
+		const { h, s, l } = this; // h, s, l are calculated in calcHSL() below
 		return `hsl(${h},${s}%, ${l}%)`;
 	}
 	fulllySaturated() {
