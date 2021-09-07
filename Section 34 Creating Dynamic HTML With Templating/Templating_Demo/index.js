@@ -3,20 +3,23 @@ const app = express();
 const path = require('path');
 const redditData = require('./data.json');
 
+// make the website public http:
 app.use(express.static(path.join(__dirname, 'public')))
 
+// using ejs template
+// assume the folder have a 'views' folder
 app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, '/views'))
+app.set('views', path.join(__dirname, '/views')); // to run from different location
 
 app.get('/', (req, res) => {
-    res.render('home')
+    res.render('home') // assume folder 'views' exist
 })
 
 app.get('/cats', (req, res) => {
     const cats = [
         'Blue', 'Rocket', 'Monty', 'Stephanie', 'Winston'
     ]
-    res.render('cats', { cats })
+    res.render('cats', { cats }) // create variable cats, can call it from files in views folder
 })
 
 app.get('/r/:subreddit', (req, res) => {

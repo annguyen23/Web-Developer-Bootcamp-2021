@@ -11,8 +11,10 @@
     <h1>All The Cats</h1>
     <ul>
         <% for(let cat of cats) { %>
-        <li><%= cat %></li>
-        <% } %>
+            <li>
+                <%= cat %>
+            </li> // to take cat from the loop, not print 'cat'
+            <% } %>
     </ul>
 
 </body>
