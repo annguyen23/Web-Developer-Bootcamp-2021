@@ -1,5 +1,8 @@
 // node > .load index.js
-// on another ternimal: mongo > use movieApp
+// use mongoose: continue with this terminal: Movie.find({...})
+
+// use mongo: on another ternimal: mongo > use movieApp
+// db.movies.find({...})
 const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost:27017/movieApp', { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => {
