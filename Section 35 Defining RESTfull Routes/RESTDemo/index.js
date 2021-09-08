@@ -102,6 +102,7 @@ app.get('/tacos', (req, res) => {
     res.send("GET /tacos response")
 })
 
+// post data
 app.post('/tacos', (req, res) => {
     const { meat, qty } = req.body;
     res.send(`OK, here are your ${qty} ${meat} tacos`)
