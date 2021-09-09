@@ -74,6 +74,7 @@ productSchema.methods.addCategory = function (newCat) {
     return this.save();
 }
 
+// set all product to be on sale
 productSchema.statics.fireSale = function () {
     return this.updateMany({}, { onSale: true, price: 0 })
 }
