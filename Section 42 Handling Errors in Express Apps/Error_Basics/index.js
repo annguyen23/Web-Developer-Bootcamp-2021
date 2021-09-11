@@ -22,6 +22,7 @@ const verifyPassword = (req, res, next) => {
     if (password === 'chickennugget') {
         next();
     }
+    // specify what error to throw
     throw new AppError('password required', 401);
     // res.send("PASSWORD NEEDED!")
     // throw new AppError('Password required!', 400)
@@ -46,10 +47,13 @@ app.get('/secret', verifyPassword, (req, res) => {
 })
 
 app.get('/admin', (req, res) => {
+    // to create a new error named AppError
+    // need an AppError.js
     throw new AppError('You are not an Admin!', 403)
 })
 
 app.use((req, res) => {
+    // set status 404 and send 'NOT FOUND!'
     res.status(404).send('NOT FOUND!')
 })
 
@@ -62,6 +66,7 @@ app.use((req, res) => {
 //     next(err)
 // })
 
+// when ever the error is thrown, it goes here
 app.use((err, req, res, next) => {
     const { status = 500, message = 'Something Went Wrong' } = err;
     res.status(status).send(message)

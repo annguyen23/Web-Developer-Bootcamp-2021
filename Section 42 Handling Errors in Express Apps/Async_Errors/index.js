@@ -28,6 +28,7 @@ const categories = ['fruit', 'vegetable', 'dairy'];
 
 function wrapAsync(fn) {
     return function (req, res, next) {
+        // if any error in fn, catch it here
         fn(req, res, next).catch(e => next(e))
     }
 }
@@ -60,7 +61,7 @@ app.get('/products/:id', wrapAsync(async (req, res, next) => {
     const product = await Product.findById(id)
     if (!product) {
         throw new AppError('Product Not Found', 404);
-    }
+    }// can use return or else to prevent render running
     res.render('products/show', { product })
 }))
 
@@ -69,7 +70,7 @@ app.get('/products/:id/edit', wrapAsync(async (req, res, next) => {
     const product = await Product.findById(id);
     if (!product) {
         throw new AppError('Product Not Found', 404);
-    }
+    }// can use return or else to prevent render running
     res.render('products/edit', { product, categories })
 }))
 
@@ -85,6 +86,7 @@ app.delete('/products/:id', wrapAsync(async (req, res) => {
     res.redirect('/products');
 }));
 
+// customize the output for an error
 const handleValidationErr = err => {
     console.dir(err);
     //In a real app, we would do a lot more here...
