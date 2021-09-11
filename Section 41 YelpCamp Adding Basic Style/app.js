@@ -19,7 +19,7 @@ app.set('views', path.join(__dirname, 'views'));
 
 
 //////////////////////////// ejs-mate //////////////////////////////////
-const ejsMate = require("ejs-mate");
+const ejsMate = require("ejs-mate"); // to edit layout for all website easier with layouts/boilerplate.ejs
 app.engine('ejs', ejsMate)
 ///////////////////////////////////////////////////////////////////////
 
@@ -93,10 +93,11 @@ app.get('/campgrounds/:id/edit', async (req, res) => {
 // update specific campground from /campgrounds/:id/edit
 app.put('/campgrounds/:id', async (req, res) => {
     const { id } = req.params;
-    const { title, location } = req.body.campground;
-    const campground = await Campground.findByIdAndUpdate(id, { title: `${title}`, location: `${location}` });
     // second option
-    // const campground = await Campground.findByIdAndUpdate(id, { ...req.bpdy.campground });
+    // const { title, location, image, price, description } = req.body.campground;
+    // const campground = await Campground.findByIdAndUpdate(id, { title: `${title}`, location: `${location}` });
+
+    const campground = await Campground.findByIdAndUpdate(id, { ...req.body.campground });
     res.redirect(`/campgrounds/${campground._id}`); // go to /campgrounds/:id
 })
 
