@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const productSchema = new mongoose.Schema({
     name: {
         type: String,
+        // for error, print out message: name cannot be blank 
         required: [true, 'name cannot be blank']
     },
     price: {
