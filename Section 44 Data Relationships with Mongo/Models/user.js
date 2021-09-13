@@ -41,4 +41,17 @@ const makeUser = async () => {
     console.log(u);
 }
 
+const addAddress = async (id) => {
+    const user = await User.findById(id);
+    user.addresses.push({
+        street: "99 3rd St.",
+        city: "New York",
+        state: "NY",
+        country: "USA"
+    })
+    const res = await user.save();
+    console.log(user);
+}
+
 makeUser();
+addAddress("613eba278f2be10b39adb816");
