@@ -4,7 +4,6 @@ const app = express();
 app.use(express.urlencoded({ extended: true })); // to get data from req.body
 ///////////////////////////////////////////////////////////////////////
 
-
 //////////////////////////// method-override ////////////////////////
 const methodOverride = require('method-override');
 app.use(methodOverride("_method")); // to use it, add '_method=<PUT,DELETE>'
@@ -47,8 +46,10 @@ db.once('open', () => {
 const catchAsync = require("./utils/catchAsync");
 const ExpressError = require("./utils/ExpressError");
 const campground = require('./models/campground');
-const { campgroundSchema } = require('./answer/schemas');
 ///////////////////////////////////////////////////////////////////////
+
+
+const { campgroundSchema } = require("./schemas.js");
 
 // home page at http://localhost:3000/
 app.get('/', (req, res) => {
@@ -68,21 +69,15 @@ app.get('/', (req, res) => {
 // })
 
 const validateCampground = (req, res, next) => {
-    const camgroundSchema = Joi.object({
-        campground: Joi.object({
-            title: Joi.string().required(),
-            price: Joi.number().required().min(0),
-            image: Joi.string().required(),
-            location: Joi.string().required(),
-            description: Joi.string().required()
-        }).required()
-    })
     const { error } = campgroundSchema.validate(req.body);
     if (error) {
         const msg = error.details.map(el => el.message).join(',');
         throw new ExpressError(msg, 400);
+    } else {
+        next();
     }
 }
+
 // main page that show all camgrounds
 app.get('/campgrounds', catchAsync(async (req, res) => {
     const campgrounds = await Campground.find({});
