@@ -23,9 +23,11 @@
             </a>
         </li>
     </ul>
-    <a href="/products">
-        Back to All Products
+
+    Farm: <a href="/farms/<%=product.farm._id%>">
+        <%= farm.name%>
     </a>
+
     <a href="/products/<%= product._id %>/edit">
         Edit Product
     </a>
