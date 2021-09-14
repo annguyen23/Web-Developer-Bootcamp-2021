@@ -22,13 +22,35 @@ const ejsMate = require("ejs-mate"); // to edit layout for all website easier wi
 app.engine('ejs', ejsMate)
 ///////////////////////////////////////////////////////////////////////
 
-//////////////////////////// joi ////////////////////////////////////////
+//////////////////////////// joi and validation///////////////////////////////////
 const Joi = require("joi");
+const { campgroundSchema, reviewSchema } = require("./schemas.js");
+
+const validateCampground = (req, res, next) => {
+    const { error } = campgroundSchema.validate(req.body);
+    if (error) {
+        const msg = error.details.map(el => el.message).join(',');
+        throw new ExpressError(msg, 400);
+    } else {
+        next();
+    }
+}
+
+const validateReview = (req, res, next) => {
+    const { error } = reviewSchema.validate(req.body);
+    if (error) {
+        const msg = error.details.map(el => el.message).join(',');
+        throw new ExpressError(msg, 400);
+    } else {
+        next();
+    }
+}
 ///////////////////////////////////////////////////////////////////////
 
 //////////////////////////// DATABASE SECTION ////////////////////////
 const mongoose = require("mongoose");
 const Campground = require('./models/campground');
+const Review = require('./models/review');
 mongoose.connect('mongodb://localhost:27017/yelp-camp', {
     useNewUrlParser: true,
     // useCreateIndex: true, useCreateIndex is always true, and it is no longer supported
@@ -49,8 +71,6 @@ const campground = require('./models/campground');
 ///////////////////////////////////////////////////////////////////////
 
 
-const { campgroundSchema } = require("./schemas.js");
-
 // home page at http://localhost:3000/
 app.get('/', (req, res) => {
     res.render('home'); // open views/home.ejs
@@ -67,16 +87,6 @@ app.get('/', (req, res) => {
 //     console.log(camp);
 //     res.send(camp); // open views/home.ejs
 // })
-
-const validateCampground = (req, res, next) => {
-    const { error } = campgroundSchema.validate(req.body);
-    if (error) {
-        const msg = error.details.map(el => el.message).join(',');
-        throw new ExpressError(msg, 400);
-    } else {
-        next();
-    }
-}
 
 // main page that show all camgrounds
 app.get('/campgrounds', catchAsync(async (req, res) => {
@@ -144,6 +154,16 @@ app.delete('/campgrounds/:id', catchAsync(async (req, res) => {
     const campground = await Campground.findByIdAndDelete(id);
     res.redirect("/campgrounds"); // go to /campgrounds
 }));
+
+app.post('/campgrounds/:id/reviews', validateReview, catchAsync(async (req, res) => {
+    const campground = await Campground.findById(req.params.id);
+    const review = new Review(req.body.review);
+    campground.reviews.push(review);
+    console.log(campground);
+    await review.save();
+    await campground.save();
+    res.redirect(`/campgrounds/${campground._id}`)
+}))
 
 // all for all request
 // * for all paths
