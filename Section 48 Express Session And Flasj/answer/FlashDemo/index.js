@@ -29,6 +29,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // FARM ROUTES
 
+// create a success message for flash
 app.use((req, res, next) => {
     res.locals.messages = req.flash('success');
     next();
@@ -46,6 +47,7 @@ app.get('/farms/:id', async (req, res) => {
     res.render('farms/show', { farm })
 })
 
+// show the message 1time, and disappear when refresh
 app.post('/farms', async (req, res) => {
     const farm = new Farm(req.body);
     await farm.save();
