@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const reviewSchema = new Schema({
     body: String,
-    rating: String
+    rating: Number
 });
 
 // export the reviewSchema under name Review

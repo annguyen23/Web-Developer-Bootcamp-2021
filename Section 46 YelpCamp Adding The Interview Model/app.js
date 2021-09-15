@@ -127,7 +127,8 @@ app.post('/campgrounds', validateCampground, catchAsync(async (req, res) => {
 
 // Show specific campground
 app.get('/campgrounds/:id', catchAsync(async (req, res) => {
-    const campground = await Campground.findById(req.params.id);
+    const campground = await Campground.findById(req.params.id).populate('reviews');
+    console.log(campground);
     res.render('campgrounds/show', { campground }); // open views/camgrounds/index.ejs
 }));
 
@@ -165,17 +166,25 @@ app.post('/campgrounds/:id/reviews', validateReview, catchAsync(async (req, res)
     res.redirect(`/campgrounds/${campground._id}`)
 }))
 
+app.delete('/campgrounds/:id/reviews/:reviewId', catchAsync(async (req, res) => {
+    const { id, reviewId } = req.params;
+    Campground.findByIdAndUpdate(id, { $pull: { reviews: reviewId } });
+    const review = await Review.findByIdAndDelete(reviewId);
+    // res.send("Delete me")
+    res.redirect(`/campgrounds/${id}`)
+}))
+
 // all for all request
 // * for all paths
-app.all('*', (req, res, next) => {
-    next(new ExpressError('Page Not Found', 404))
-})
+// app.all('*', (req, res, next) => {
+//     next(new ExpressError('Page Not Found', 404))
+// })
 
-app.use((err, req, res, next) => {
-    const { statusCode = 500 } = err;
-    if (!err.message) err.message = 'Oh No, Something Went Wrong!'
-    res.status(statusCode).render('error', { err })
-})
+// app.use((err, req, res, next) => {
+//     const { statusCode = 500 } = err;
+//     if (!err.message) err.message = 'Oh No, Something Went Wrong!'
+//     res.status(statusCode).render('error', { err })
+// })
 
 app.listen(3000, () => {
     console.log("Listen to port 3000");
