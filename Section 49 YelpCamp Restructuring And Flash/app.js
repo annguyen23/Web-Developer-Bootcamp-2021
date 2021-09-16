@@ -4,6 +4,7 @@ const app = express();
 app.use(express.urlencoded({ extended: true })); // to get data from req.body
 ///////////////////////////////////////////////////////////////////////
 
+
 //////////////////////////// method-override ////////////////////////
 const methodOverride = require('method-override');
 app.use(methodOverride("_method")); // to use it, add '_method=<PUT,DELETE>'
@@ -25,7 +26,6 @@ app.engine('ejs', ejsMate)
 
 //////////////////////////// joi and validation///////////////////////////////////
 const Joi = require("joi");
-
 const validateCampground = (req, res, next) => {
     const { error } = campgroundSchema.validate(req.body);
     if (error) {
@@ -49,13 +49,11 @@ const validateReview = (req, res, next) => {
 
 //////////////////////////// DATABASE SECTION ////////////////////////
 const mongoose = require("mongoose");
-const Campground = require('./models/campground');
-const Review = require('./models/review');
 mongoose.connect('mongodb://localhost:27017/yelp-camp', {
     useNewUrlParser: true,
     // useCreateIndex: true, useCreateIndex is always true, and it is no longer supported
-    useUnifiedTopology: true,
-    useFindAndModify: false
+    useUnifiedTopology: true
+    // useFindAndModify: false
 });
 
 const db = mongoose.connection;
@@ -65,17 +63,44 @@ db.once('open', () => {
 });
 ///////////////////////////////////////////////////////////////////////
 
-//////////////////////////// catchAsync and ExpressError ////////////////////
-const catchAsync = require("./utils/catchAsync");
+
+//////////////////////////// ExpressError //////////////////////////
 const ExpressError = require("./utils/ExpressError");
-const campground = require('./models/campground');
 ///////////////////////////////////////////////////////////////////////
 
+
+//////////////////////////// Express-session //////////////////////////
+const session = require('express-session')
+const sessionConfig = {
+    secret: "thisshouldbeabettersecret",
+    resave: false,
+    saveUninitialized: true,
+    cookie: { //stay logged in for a week
+        httpOnly: true,
+        expire: Date.now() + 1000 * 60 * 60 * 24 * 7,
+        maxAge: 1000 * 60 * 60 * 24 * 7
+    }
+}
+app.use(session(sessionConfig))
+///////////////////////////////////////////////////////////////////////
+
+
+//////////////////////////// connect-flash //////////////////////////
+const flash = require('connect-flash');
+app.use(flash());
+app.use((req, res, next) => {
+    res.locals.success = req.flash('success');
+    res.locals.error = req.flash('error');
+    next();
+})
+///////////////////////////////////////////////////////////////////////
 const campgrounds = require('./routes/campground');
 const reviews = require('./routes/reviews');
 
 app.use("/campgrounds", campgrounds);
 app.use('/campgrounds/:id/reviews', reviews);
+
+
 
 // all for all request
 // * for all paths

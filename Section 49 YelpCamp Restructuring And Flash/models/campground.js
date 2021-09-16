@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const review = require("./review");
+const Review = require("./review");
 const Schema = mongoose.Schema;
 
 const CampGroundSchema = new Schema({
@@ -18,7 +18,7 @@ const CampGroundSchema = new Schema({
 
 // this is run after campground is deleted
 CampGroundSchema.post('findOneAndDelete', async function (campground) {
-    if (campground) {
+    if (campground && campground.reviews.length) {
         await Review.deleteMany({
             _id: {
                 $in: campground.reviews
