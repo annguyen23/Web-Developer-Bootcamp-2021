@@ -24,6 +24,8 @@ const ejsMate = require("ejs-mate"); // to edit layout for all website easier wi
 app.engine('ejs', ejsMate)
 ///////////////////////////////////////////////////////////////////////
 
+
+
 //////////////////////////// joi and validation///////////////////////////////////
 const Joi = require("joi");
 const validateCampground = (req, res, next) => {
@@ -88,17 +90,40 @@ app.use(session(sessionConfig))
 //////////////////////////// connect-flash //////////////////////////
 const flash = require('connect-flash');
 app.use(flash());
+///////////////////////////////////////////////////////////////////////
+
+
+//////////////////////////// passport for authentication //////////////////////
+const passport = require('passport');
+const LocalStrategy = require('passport-local');
+app.use(passport.initialize())
+app.use(passport.session())// persistent login session
+const User = require('./models/user')
+passport.use(new LocalStrategy(User.authenticate()))
+passport.serializeUser(User.serializeUser()); // store in the session
+passport.deserializeUser(User.deserializeUser()); // unstore in the session
+///////////////////////////////////////////////////////////////////////
+
+const userRoutes = require('./routes/users');
+const campgroundRoutes = require('./routes/campgrounds');
+const reviewRoutes = require('./routes/reviews');
+
 app.use((req, res, next) => {
+    res.locals.currentUser = req.user;
     res.locals.success = req.flash('success');
     res.locals.error = req.flash('error');
     next();
 })
-///////////////////////////////////////////////////////////////////////
-const campgrounds = require('./routes/campground');
-const reviews = require('./routes/reviews');
 
-app.use("/campgrounds", campgrounds);
-app.use('/campgrounds/:id/reviews', reviews);
+app.get('/fakeUser', async (req, res) => {
+    const user = new User({ email: 'colt1@gmail.com', username: 'colt1' })
+    const newUser = await User.register(user, 'chicken');
+    res.send(newUser);
+})
+
+app.use("/", userRoutes);
+app.use("/campgrounds", campgroundRoutes);
+app.use('/campgrounds/:id/reviews', reviewRoutes);
 
 
 
