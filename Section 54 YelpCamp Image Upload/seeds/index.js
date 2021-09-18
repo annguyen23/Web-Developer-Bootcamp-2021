@@ -31,7 +31,21 @@ const seedDB = async () => {
             title: `${sample(descriptors)} ${sample(places)}`,
             price,
             // random images from unsplash collection
-            image: "https://source.unsplash.com/collection/3788774/600x400",
+            // image: "https://source.unsplash.com/collection/3788774/600x400",
+            images: [
+                {
+                    url: 'https://res.cloudinary.com/duogomqpv/image/upload/v1631969175/houcxbrld8gwgxsvij5t.jpg',
+                    filename: 'houcxbrld8gwgxsvij5t',
+                },
+                {
+                    url: 'https://res.cloudinary.com/duogomqpv/image/upload/v1631969175/y6tihhbrjht9kukojmvv.jpg',
+                    filename: 'y6tihhbrjht9kukojmvv',
+                },
+                {
+                    url: 'https://res.cloudinary.com/duogomqpv/image/upload/v1631969175/im8rkarahbv5tkuc0av1.jpg',
+                    filename: 'im8rkarahbv5tkuc0av1',
+                }
+            ],
             description: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolore inventore excepturi beatae? Sit dolore corporis esse earum, nemo ducimus, inventore repudiandae excepturi maxime culpa omnis ratione nobis quibusdam, minima itaque?"
         })
         await camp.save();

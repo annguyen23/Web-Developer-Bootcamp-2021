@@ -2,6 +2,9 @@ const express = require('express');
 const router = express.Router();
 const Campground = require('../models/campground');
 const campgrounds = require('../controller/campgrounds');
+const multer = require('multer')
+const { storage } = require('../cloudinary') // know to look for index file
+const upload = multer({ storage })
 
 const Review = require('../models/review');
 const { campgroundSchema } = require("../schemas.js");
@@ -19,7 +22,11 @@ const ExpressError = require("../utils/ExpressError");
 
 router.route('/')
     .get(catchAsync(campgrounds.index)) // main page that show all camgrounds
-    .post(isLoggedIn, validateCampground, catchAsync(campgrounds.createCampground)); // create new campground from localhost:3000/campgrounds/new
+    .post(isLoggedIn, upload.array('image'), validateCampground, catchAsync(campgrounds.createCampground)); // create new campground from localhost:3000/campgrounds/new
+// .post(upload.array('image'), (req, res) => {
+//     console.log(req.body, req.files);
+//     res.send('Worked')
+// })
 
 // Show specific campground
 router.get('/new', isLoggedIn, catchAsync(campgrounds.renderNewForm));
@@ -27,7 +34,7 @@ router.get('/new', isLoggedIn, catchAsync(campgrounds.renderNewForm));
 
 router.route('/:id')
     .get(catchAsync(campgrounds.showCampground)) // Show specific campground
-    .put(isLoggedIn, isAuthor, validateCampground, catchAsync(campgrounds.updateCampground)) // update specific campground from /campgrounds/:id/edit
+    .put(isLoggedIn, upload.array('image'), isAuthor, validateCampground, catchAsync(campgrounds.updateCampground)) // update specific campground from /campgrounds/:id/edit
     .delete(isLoggedIn, isAuthor, catchAsync(campgrounds.deleteCampground)); // delete specific campground from /campgrounds/:id
 
 // Show specific campground to edit
