@@ -17,25 +17,20 @@ const ExpressError = require("../utils/ExpressError");
 //     res.render('home'); // open views/home.ejs
 // });
 
-// main page that show all camgrounds
-router.get('/', catchAsync(campgrounds.index));
+router.route('/')
+    .get(catchAsync(campgrounds.index)) // main page that show all camgrounds
+    .post(isLoggedIn, validateCampground, catchAsync(campgrounds.createCampground)); // create new campground from localhost:3000/campgrounds/new
 
 // Show specific campground
 router.get('/new', isLoggedIn, catchAsync(campgrounds.renderNewForm));
 
-// create new campground from localhost:3000/campgrounds/new
-router.post('/', validateCampground, catchAsync(campgrounds.createCampground));
 
-// Show specific campground
-router.get('/:id', catchAsync(campgrounds.showCampground));
+router.route('/:id')
+    .get(catchAsync(campgrounds.showCampground)) // Show specific campground
+    .put(isLoggedIn, isAuthor, validateCampground, catchAsync(campgrounds.updateCampground)) // update specific campground from /campgrounds/:id/edit
+    .delete(isLoggedIn, isAuthor, catchAsync(campgrounds.deleteCampground)); // delete specific campground from /campgrounds/:id
 
 // Show specific campground to edit
 router.get('/:id/edit', isLoggedIn, isAuthor, catchAsync(campgrounds.renderEditForm));
-
-// update specific campground from /campgrounds/:id/edit
-router.put('/:id', isLoggedIn, isAuthor, validateCampground, catchAsync(campgrounds.updateCampground));
-
-// delete specific campground from /campgrounds/:id
-router.delete('/:id', isLoggedIn, isAuthor, catchAsync(campgrounds.deleteCampground));
 
 module.exports = router;

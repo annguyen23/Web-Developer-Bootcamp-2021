@@ -13,3 +13,12 @@ module.exports.createReview = async (req, res) => {
     req.flash('success', 'Successfully create a new review')
     res.redirect(`/campgrounds/${campground._id}`)
 }
+
+module.exports.deleteReview = async (req, res) => {
+    const { id, reviewId } = req.params;
+    Campground.findByIdAndUpdate(id, { $pull: { reviews: reviewId } });
+    const review = await Review.findByIdAndDelete(reviewId);
+    // res.send("Delete me")
+    req.flash('success', 'Successfully deleted a review')
+    res.redirect(`/campgrounds/${id}`)
+}
