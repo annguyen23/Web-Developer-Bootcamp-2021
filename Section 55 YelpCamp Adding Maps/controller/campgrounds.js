@@ -1,5 +1,8 @@
 const Campground = require('../models/campground');
-const { cloudinary } = require("../cloudinary")
+const mbxGeocoding = require("@mapbox/mapbox-sdk/services/geocoding");
+const mapBoxToken = process.env.MAPBOX_TOKEN;
+const geocoder = mbxGeocoding({ accessToken: mapBoxToken });
+const { cloudinary } = require("../cloudinary");
 
 module.exports.index = async (req, res) => {
     console.log(res.locals.currentUser)
@@ -11,27 +14,13 @@ module.exports.renderNewForm = async (req, res) => {
     res.render('campgrounds/new'); // open views/camgrounds/index.ejs
 }
 
-module.exports.createCampground = async (req, res) => {
-    // if nothing is entered in the form
-    // if (!req.body.campground) throw new ExpressError('Invalid Campground Data', 400);
-
-    // const camgroundSchema = Joi.object({
-    //     campground: Joi.object({
-    //         title: Joi.string().required(),
-    //         price: Joi.number().required().min(0),
-    //         image: Joi.string().required(),
-    //         location: Joi.string().required(),
-    //         description: Joi.string().required()
-    //     }).required()
-    // })
-    // const { error } = campgroundSchema.validate(req.body);
-    // if (error) {
-    //     const msg = error.details.map(el => el.message).join(',');
-    //     throw new ExpressError(msg, 400);
-    // }
-    // to get data from req.body, need app.use(express.urlencoded({extended: true}));
-
+module.exports.createCampground = async (req, res, next) => {
+    const geoData = await geocoder.forwardGeocode({
+        query: req.body.campground.location,
+        limit: 1
+    }).send()
     const campground = new Campground(req.body.campground);
+    campground.geometry = geoData.body.features[0].geometry;
     campground.images = req.files.map(f => ({ url: f.path, filename: f.filename }))
     campground.author = req.user._id;
     await campground.save();
@@ -90,3 +79,4 @@ module.exports.deleteCampground = async (req, res) => {
     req.flash('success', 'Successfully deleted a campground')
     res.redirect("/campgrounds"); // go to /campgrounds
 }
+

@@ -2,6 +2,7 @@
     <link rel="stylesheet" href="/stylesheets/stars.css">
     <div class="row mb-3">
         <div class="col-6">
+            <div id='map' style='width: 550px; height: 300px;'></div>
             <div id="campgroundCarousel" class="carousel slide"
                 data-ride="carousel">
                 <div class="carousel-inner">
@@ -138,3 +139,10 @@
                         <% } %>
         </div>
     </div>
+
+    <script>
+        const mapToken = '<%-process.env.MAPBOX_TOKEN%>';
+        const campgrounds = '<%-JSON.stringify(campground)%>';
+        const campground = JSON.parse(campgrounds);
+    </script>
+    <script src="/javascripts/showPageMap.js"></script>

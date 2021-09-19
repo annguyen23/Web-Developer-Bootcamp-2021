@@ -1,3 +1,4 @@
+const stringifyBoolean = require("@mapbox/mapbox-sdk/services/service-helpers/stringify-booleans");
 const mongoose = require("mongoose");
 const Review = require("./review");
 const User = require("./user");
@@ -17,6 +18,17 @@ const opts = { toJSON: { virtuals: true } };
 const CampGroundSchema = new Schema({
     title: String,
     images: [ImageSchema],
+    geometry: {
+        type: {
+            type: String,
+            enum: ["Point"],
+            requirred: true
+        },
+        coordinates: {
+            type: [Number],
+            required: true
+        }
+    },
     price: Number,
     description: String,
     location: String,

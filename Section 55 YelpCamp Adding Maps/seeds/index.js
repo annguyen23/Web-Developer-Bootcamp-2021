@@ -30,6 +30,10 @@ const seedDB = async () => {
             location: `${cities[random1000].city}, ${cities[random1000].state}`,
             title: `${sample(descriptors)} ${sample(places)}`,
             price,
+            geometry: {
+                type: "Point",
+                coordinates: [-87.638519, 41.934272]
+            },
             // random images from unsplash collection
             // image: "https://source.unsplash.com/collection/3788774/600x400",
             images: [
