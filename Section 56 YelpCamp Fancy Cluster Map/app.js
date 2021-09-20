@@ -2,7 +2,6 @@ if (process.env.MODE_ENV !== 'production') {
     require('dotenv').config();
 }
 
-
 //////////////////////////// express //////////////////////////////////
 const express = require('express');
 const app = express();
@@ -54,9 +53,24 @@ const validateReview = (req, res, next) => {
     }
     ///////////////////////////////////////////////////////////////////////
 
+
 //////////////////////////// DATABASE SECTION ////////////////////////
 const mongoose = require("mongoose");
-mongoose.connect('mongodb://localhost:27017/yelp-camp', {
+const MongoDBStore = require('connect-mongo');
+const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/yelp-camp';
+const session = require('express-session')
+    // 'mongodb://localhost:27017/yelp-camp'
+const store = MongoDBStore.create({
+    mongoUrl: dbUrl,
+    secret: "thisshouldbeabettersecret",
+    touchAfter: 24 * 60 * 60
+});
+
+store.on("error", function(e) {
+    console.log("SESSION STORE ERROR", e)
+})
+
+mongoose.connect(dbUrl, {
     useNewUrlParser: true,
     // useCreateIndex: true, useCreateIndex is always true, and it is no longer supported
     useUnifiedTopology: true
@@ -70,15 +84,10 @@ db.once('open', () => {
 });
 ///////////////////////////////////////////////////////////////////////
 
-
-//////////////////////////// ExpressError //////////////////////////
-const ExpressError = require("./utils/ExpressError");
-///////////////////////////////////////////////////////////////////////
-
-
 //////////////////////////// Express-session //////////////////////////
-const session = require('express-session')
+
 const sessionConfig = {
+    store,
     name: 'session',
     secret: "thisshouldbeabettersecret",
     resave: true,
@@ -92,6 +101,10 @@ const sessionConfig = {
 }
 app.use(session(sessionConfig))
     ///////////////////////////////////////////////////////////////////////
+
+//////////////////////////// ExpressError //////////////////////////
+const ExpressError = require("./utils/ExpressError");
+///////////////////////////////////////////////////////////////////////
 
 
 //////////////////////////// connect-flash //////////////////////////
