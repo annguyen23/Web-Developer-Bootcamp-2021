@@ -1,10 +1,12 @@
 mapboxgl.accessToken = 'pk.eyJ1IjoiYW5uZ3V5ZW53YSIsImEiOiJja3RyMjkzcGMxMmJ3MnByejJ5bzBqZnh2In0.OLKR9H_j1k668yndwGYo0Q';
 const map = new mapboxgl.Map({
     container: 'map',
-    style: 'mapbox://styles/mapbox/dark-v10',
+    style: 'mapbox://styles/mapbox/light-v10',
     center: [-103.5917, 40.6699],
     zoom: 3
 });
+
+map.addControl(new mapboxgl.NavigationControl());
 
 map.on('load', () => {
     // Add a new source from our GeoJSON data and

@@ -2,6 +2,7 @@ if (process.env.MODE_ENV !== 'production') {
     require('dotenv').config();
 }
 
+
 //////////////////////////// express //////////////////////////////////
 const express = require('express');
 const app = express();
@@ -26,7 +27,7 @@ app.use(express.static(path.join(__dirname, 'public'))); // to access files from
 //////////////////////////// ejs-mate //////////////////////////////////
 const ejsMate = require("ejs-mate"); // to edit layout for all website easier with layouts/boilerplate.ejs
 app.engine('ejs', ejsMate)
-///////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////
 
 
 
@@ -43,15 +44,15 @@ const validateCampground = (req, res, next) => {
 }
 
 const validateReview = (req, res, next) => {
-    const { error } = reviewSchema.validate(req.body);
-    if (error) {
-        const msg = error.details.map(el => el.message).join(',');
-        throw new ExpressError(msg, 400);
-    } else {
-        next();
+        const { error } = reviewSchema.validate(req.body);
+        if (error) {
+            const msg = error.details.map(el => el.message).join(',');
+            throw new ExpressError(msg, 400);
+        } else {
+            next();
+        }
     }
-}
-///////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////
 
 //////////////////////////// DATABASE SECTION ////////////////////////
 const mongoose = require("mongoose");
@@ -59,7 +60,7 @@ mongoose.connect('mongodb://localhost:27017/yelp-camp', {
     useNewUrlParser: true,
     // useCreateIndex: true, useCreateIndex is always true, and it is no longer supported
     useUnifiedTopology: true
-    // useFindAndModify: false
+        // useFindAndModify: false
 });
 
 const db = mongoose.connection;
@@ -78,17 +79,19 @@ const ExpressError = require("./utils/ExpressError");
 //////////////////////////// Express-session //////////////////////////
 const session = require('express-session')
 const sessionConfig = {
+    name: 'session',
     secret: "thisshouldbeabettersecret",
-    resave: false,
+    resave: true,
     saveUninitialized: true,
-    cookie: { //stay logged in for a week
+    cookie: {
         httpOnly: true,
-        expire: Date.now() + 1000 * 60 * 60 * 24 * 7,
+        //stay logged in for a week
+        expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
         maxAge: 1000 * 60 * 60 * 24 * 7
     }
 }
 app.use(session(sessionConfig))
-///////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////
 
 
 //////////////////////////// connect-flash //////////////////////////
@@ -101,11 +104,66 @@ app.use(flash());
 const passport = require('passport');
 const LocalStrategy = require('passport-local');
 app.use(passport.initialize())
-app.use(passport.session())// persistent login session
+app.use(passport.session()) // persistent login session
 const User = require('./models/user')
 passport.use(new LocalStrategy(User.authenticate()))
 passport.serializeUser(User.serializeUser()); // store in the session
 passport.deserializeUser(User.deserializeUser()); // unstore in the session
+///////////////////////////////////////////////////////////////////////
+
+
+//////////////////////////// Express Mongoose Sanitize //////////////////////////// 
+// to prevent SQL injection
+const bodyParser = require('body-parser');
+const mongoSanitize = require('express-mongo-sanitize');
+app.use(mongoSanitize());
+///////////////////////////////////////////////////////////////////////
+
+//////////////////////////// helmet //////////////////////////// 
+const helmet = require('helmet');
+app.use(helmet());
+const scriptSrcUrls = [
+    "https://stackpath.bootstrapcdn.com",
+    "https://api.tiles.mapbox.com",
+    "https://api.mapbox.com",
+    "https://kit.fontawesome.com",
+    "https://cdnjs.cloudflare.com",
+    "https://cdn.jsdelivr.net",
+];
+const styleSrcUrls = [
+    "https://kit-free.fontawesome.com",
+    "https://stackpath.bootstrapcdn.com",
+    "https://api.mapbox.com",
+    "https://api.tiles.mapbox.com",
+    "https://fonts.googleapis.com",
+    "https://use.fontawesome.com",
+];
+const connectSrcUrls = [
+    "https://api.mapbox.com",
+    "https://*.tiles.mapbox.com",
+    "https://events.mapbox.com",
+];
+const fontSrcUrls = [];
+app.use(
+    helmet.contentSecurityPolicy({
+        directives: {
+            defaultSrc: [],
+            connectSrc: ["'self'", ...connectSrcUrls],
+            scriptSrc: ["'unsafe-inline'", "'self'", ...scriptSrcUrls],
+            styleSrc: ["'self'", "'unsafe-inline'", ...styleSrcUrls],
+            workerSrc: ["'self'", "blob:"],
+            childSrc: ["blob:"],
+            objectSrc: [],
+            imgSrc: [
+                "'self'",
+                "blob:",
+                "data:",
+                "https://res.cloudinary.com/duogomqpv/",
+            ],
+            fontSrc: ["'self'", ...fontSrcUrls],
+        },
+    })
+);
 ///////////////////////////////////////////////////////////////////////
 
 const userRoutes = require('./routes/users');
@@ -119,11 +177,10 @@ app.use((req, res, next) => {
     next();
 })
 
-app.get('/fakeUser', async (req, res) => {
-    const user = new User({ email: 'colt1@gmail.com', username: 'colt1' })
-    const newUser = await User.register(user, 'chicken');
-    res.send(newUser);
-})
+// home page at http: //localhost:3000/
+app.get('/', (req, res) => {
+    res.render('home'); // open views/home.ejs
+});
 
 app.use("/", userRoutes);
 app.use("/campgrounds", campgroundRoutes);
@@ -146,4 +203,3 @@ app.use((err, req, res, next) => {
 app.listen(3000, () => {
     console.log("Listen to port 3000");
 })
-
