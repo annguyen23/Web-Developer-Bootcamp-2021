@@ -22,7 +22,7 @@ app.use(methodOverride('_method'));
 
 const categories = ['fruit', 'vegetable', 'dairy'];
 
-app.get('/products', async (req, res) => {
+app.get('/products', async(req, res) => {
     const { category } = req.query;
     if (category) {
         const products = await Product.find({ category });
@@ -42,7 +42,7 @@ app.get('/products/new', (req, res) => {
 });
 
 // get the new product from user, then save and show it
-app.post('/products', async (req, res) => {
+app.post('/products', async(req, res) => {
     const newProduct = new Product(req.body);
     await newProduct.save()
     console.log(newProduct);
@@ -51,14 +51,14 @@ app.post('/products', async (req, res) => {
 });
 
 // how the update page of product
-app.get('/products/:id/edit', async (req, res) => {
+app.get('/products/:id/edit', async(req, res) => {
     const { id } = req.params;
     const product = await Product.findById(id);
     res.render('products/edit', { product, categories })
 });
 
 // update the product using PUT
-app.put('/products/:id', async (req, res) => {
+app.put('/products/:id', async(req, res) => {
     console.log(req.body);
     // res.send('PUT');
     const { id } = req.params;
@@ -67,7 +67,7 @@ app.put('/products/:id', async (req, res) => {
 });
 
 // show single product
-app.get('/products/:id', async (req, res) => {
+app.get('/products/:id', async(req, res) => {
     const { id } = req.params;
     const product = await Product.findById(id);
     if (!product) {
@@ -80,7 +80,7 @@ app.get('/products/:id', async (req, res) => {
 });
 
 // delete product
-app.delete('/products/:id', async (req, res) => {
+app.delete('/products/:id', async(req, res) => {
     const { id } = req.params;
     const product = await Product.findByIdAndDelete(id);
     if (!product) {
